@@ -2,7 +2,7 @@
 Lite sqlite Database framework on Android which can handle table hierarchies elegantly and efficiently。It support upgrade database  seamlessly too.
 </br>
 
-#Features
+# Features
  Handle table hierarchies elegantly.
  </br>
  Support upgrade database seamlessly.
@@ -19,7 +19,7 @@ public class UserDao extends BaseDao<User, Long> implements User.Columns {
 ```
 </br>
 
-#### Implement your own DatabaseHelper extends from BaseDBHelper：
+#### 2.Implement your own DatabaseHelper extends from BaseDBHelper：
 ```Java
 public class MyDBHelper extends BaseDBHelper {
     @Override
@@ -30,11 +30,15 @@ public class MyDBHelper extends BaseDBHelper {
         list.add(EmployeeDao.getInstance());
         return list;
     }
-...
+	
+   ...
+   
 }
 ```
+
 </br>
-#### Use daos to access data,Enjoy it.
+
+#### 3.Use daos to access data,Enjoy it.
 ```Java
         new MyDBHelper(this, DB_NAME, null, DB_VERSION);
         User user = new User();
@@ -54,6 +58,7 @@ public class MyDBHelper extends BaseDBHelper {
         User savedUser = (User) UserDao.getInstance().queryByID(1L);
         Log.i(TAG, "Saved user:\n" + savedUser);
 ```
+
 </br>
 
 # Future
