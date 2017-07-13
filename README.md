@@ -11,7 +11,7 @@ Lite sqlite Database framework on Android which can handle table hierarchies ele
  </br>
 
 # How to use
-#### 1.Download or clone project and import sub module called database into your project。Then implement your daos which should extends from BaseDao：
+#### 1.Download or clone project and import sub module called database into your project. Then implement your daos which should extends from BaseDao：
 ```Java
 public class UserDao extends BaseDao<User, Long> implements User.Columns {
 ...
