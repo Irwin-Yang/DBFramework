@@ -1,13 +1,13 @@
 # DBFramework
-Lite sqlite Database framework on Android which can handle table hierarchies elegantly and efficiently。It support upgrade database  seamlessly too.
+Lite sqlite Database framework on Android which can handle table hierarchies elegantly and efficiently. It support upgrade database  seamlessly too.
 </br>
 
 # Features
- Handle table hierarchies elegantly.
+ 1.Handle table hierarchies elegantly.
  </br>
- Support upgrade database seamlessly.
+ 2.Support upgrade database seamlessly.
   </br>
- Structured, Efficient and Easy to use, save you out of a lot of redundant code.
+ 3.Structured, Efficient and Easy to use, save you out of a lot of redundant code.
  </br>
 
 # How to use
@@ -67,7 +67,5 @@ public class MyDBHelper extends BaseDBHelper {
 </br>
 Any advice will be appreciated:D
 
-</br>
-More information about SkinFramework:http://www.cnblogs.com/oxgen/p/7154699.html
 </br>
 Email:zhpngyang52@gmail.com
