@@ -3,13 +3,15 @@ Lite sqlite Database framework on Android which can handle table hierarchies ele
 </br>
 
 #Features
-## Handle table hierarchies elegantly.
-## Support upgrade database seamlessly.
-## Structured, Efficient and Easy to use, save you out of a lot of redundant code.
-
+ Handle table hierarchies elegantly.
+ </br>
+ Support upgrade database seamlessly.
+  </br>
+ Structured, Efficient and Easy to use, save you out of a lot of redundant code.
+ </br>
 
 # How to use
- ## Download or clone project and import sub module called database into your project。Then implement your daos which should extends from BaseDao：
+#### 1.Download or clone project and import sub module called database into your project。Then implement your daos which should extends from BaseDao：
 </br>
 ```Java
 public class UserDao extends BaseDao<User, Long> implements User.Columns {
@@ -17,7 +19,8 @@ public class UserDao extends BaseDao<User, Long> implements User.Columns {
 }
 ```
 </br>
-## Implement your own DatabaseHelper extends from BaseDBHelper：
+
+#### Implement your own DatabaseHelper extends from BaseDBHelper：
 <br>
 ```Java
 public class MyDBHelper extends BaseDBHelper {
@@ -33,7 +36,7 @@ public class MyDBHelper extends BaseDBHelper {
 }
 ```
 </br>
-## Use daos to access data,Enjoy it.
+#### Use daos to access data,Enjoy it.
 ```Java
         new MyDBHelper(this, DB_NAME, null, DB_VERSION);
         User user = new User();
@@ -56,7 +59,7 @@ public class MyDBHelper extends BaseDBHelper {
 </br>
 
 # Future
-## Maybe we can add support for annotation-processing so we can generate daos according to entities like [GreenDao](https://github.com/greenrobot/greenDAO/).
+#### Maybe we can add support for annotation-processing so we can generate daos according to entities like [GreenDao](https://github.com/greenrobot/greenDAO/).
 
 </br>
 Any advice will be appreciated:D

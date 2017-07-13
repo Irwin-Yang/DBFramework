@@ -11,9 +11,9 @@ import java.util.List;
  */
 public abstract class AbstractUpgrader {
 
-    public abstract List<AbstractDao> getNewTables();    //新表
+    public abstract List<AbstractDao> getNewTables();
 
-    public abstract List<AbstractDao> getChangedTables();  //表改变
+    public abstract List<AbstractDao> getChangedTables();
 
     public void upgrade(SQLiteDatabase db,List<AbstractDao> tables,int oldVersion,int newVersion) {
         createTables(db, getNewTables());
@@ -24,7 +24,7 @@ public abstract class AbstractUpgrader {
     protected void createTables(SQLiteDatabase db, List<AbstractDao> newTables) {
         if (newTables != null) {
             int size=newTables.size();
-            AbstractDao dao=null;
+            AbstractDao dao;
             for (int i=0;i<size;i++) {
                 dao=newTables.get(i);
                 Log.i("Info", "Creating table: " + dao.getTableName());
@@ -36,7 +36,7 @@ public abstract class AbstractUpgrader {
     protected void upgradeTables(SQLiteDatabase db, List<AbstractDao> changedTables) {
         if (changedTables != null) {
             int size=changedTables.size();
-            AbstractDao dao=null;
+            AbstractDao dao;
             for (int i=0;i<size;i++) {
                 dao=changedTables.get(i);
                 Log.i("Info","updating table: "+dao.getTableName());
@@ -49,7 +49,7 @@ public abstract class AbstractUpgrader {
      * Example: <code>INSERT INTO UserTmp(_id,_name,_age,_role) SELECT _id,_name,_age,'Programmer' FROM User</code>
      *
      * @param db
-     * @param dao    数据库升级 先存到临时表当中 然后在增加数据库字段  插入对应的数据 ，最后删除临时表
+     * @param dao
      */
     void updateTable(SQLiteDatabase db, AbstractDao dao) {
         String table = dao.getTableName();
