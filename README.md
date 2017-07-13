@@ -14,7 +14,46 @@ Lite sqlite Database framework on Android which can handle table hierarchies ele
 #### 1.Download or clone project and import sub module called database into your project. Then implement your daos which should extends from BaseDao：
 ```Java
 public class UserDao extends BaseDao<User, Long> implements User.Columns {
-...
+
+     @Override
+    public int addProperties(List<Property> list, int offset) {
+        //Add columns here.
+        list.add(new Property(ID, Property.TYPE_INTEGER).setPrimaryKey(true));
+        list.add(new Property(NAME, Property.TYPE_TEXT));
+        list.add(new Property(AGE, Property.TYPE_INTEGER));
+        return 0;
+    }
+
+    @Override
+    public User createEntity() {
+        //Create entity instance.
+        return new User();
+    }
+
+    @Override
+    public int fillEntity(USER user, Cursor cursor, int offset) {
+        //Fill entity instance with data from cursor in the order of add columns to increase efficiency.
+        user.setId(cursor.getLong(offset++));
+        user.setName(cursor.getString(offset++));
+        user.setAge(cursor.getInt(offset++));
+        return offset;
+    }
+
+    @Override
+    public String getTableName() {
+        //Return table name.
+        return "User";
+    }
+
+    @Override
+    public ContentValues convertValues(User user) {
+        //Convert entity to content values for inserting or updating.
+        ContentValues values = new ContentValues();
+        putAutoIncrementID(values, user.getId());
+        values.put(NAME, user.getName());
+        values.put(AGE, user.getAge());
+        return values;
+    }
 }
 ```
 </br>
@@ -57,6 +96,8 @@ public class MyDBHelper extends BaseDBHelper {
         //We provided many convenient methods for using in common database development. See {@link com.irwin.database.AbstractDao} for more information.
         User savedUser = (User) UserDao.getInstance().queryByID(1L);
         Log.i(TAG, "Saved user:\n" + savedUser);
+
+        List<Employee> list = EmployeeDao.getInstance().queryAll();
 ```
 
 </br>

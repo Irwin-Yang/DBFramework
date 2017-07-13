@@ -11,6 +11,8 @@ import com.irwin.dbframework.beans.User;
 import com.irwin.dbframework.daos.EmployeeDao;
 import com.irwin.dbframework.daos.UserDao;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "DBTest";
     final String DB_NAME = "TestDB.db";
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         User savedUser = (User) UserDao.getInstance().queryByID(1L);
         Log.i(TAG, "Saved user:\n" + savedUser);
 
-        Employee savedEmployee = (Employee) EmployeeDao.getInstance().queryByID(1L);
-        ((TextView) findViewById(R.id.InfoView)).setText("Saved employee: \r\n" + savedEmployee);
+        List<Employee> list = EmployeeDao.getInstance().queryAll();
+        ((TextView) findViewById(R.id.InfoView)).setText("Saved employee: \r\n" + list.get(0));
     }
 }
