@@ -33,7 +33,7 @@ public class DefaultUpgrader extends BaseUpgrader {
             //Remove hit table.
             oldMap.remove(table.Name);
             if (oldTable.equalsColumns(table)) {
-                //Table not change. Delete temp table.
+                //Table not change.
                 Log.i(TAG, "Table " + table.Name + " doesn't need update");
                 continue;
             }
