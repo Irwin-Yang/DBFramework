@@ -9,8 +9,8 @@ import java.util.Map;
 
 /**
  * Created by ARES on 2017/7/14.
+ * Database upgrader which will check the change of tables/columns and upgrade them if need.
  */
-
 public class DefaultUpgrader extends BaseUpgrader {
 
     protected static final String TEMP_SUFFIX = "_tmp";

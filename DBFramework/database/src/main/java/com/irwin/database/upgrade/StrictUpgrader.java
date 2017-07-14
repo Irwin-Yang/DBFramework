@@ -10,6 +10,8 @@ import java.util.Map;
 
 /**
  * Created by ARES on 2017/7/13.
+ * Database upgrader which will check the change of tables/columns and upgrade them if need.. Unlike {@link DefaultUpgrader}, this implementation will
+ * treat tables/columns changes strictly, and it may take extra expenses.
  */
 
 public class StrictUpgrader extends DefaultUpgrader {

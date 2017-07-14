@@ -1,5 +1,6 @@
 # DBFramework
-Lite sqlite Database framework on Android which can handle table hierarchies elegantly and efficiently. It support upgrade database  seamlessly too.
+Lite sqlite Database framework on Android which can handle table hierarchies elegantly and efficiently. It support upgrade database  seamlessly and subscribe events
+of table chagne too.
 </br>
 
 # Features
@@ -7,7 +8,9 @@ Lite sqlite Database framework on Android which can handle table hierarchies ele
  </br>
  2.Support upgrade database seamlessly.
   </br>
- 3.Structured, Efficient and Easy to use, save you out of a lot of redundant code.
+ 3.Support subscribe events of table change.
+  </br>
+ 4.Structured, Efficient and Easy to use, save you out of a lot of redundant code.
  </br>
 
 # How to use
@@ -77,20 +80,22 @@ public class MyDBHelper extends BaseDBHelper {
 
 </br>
 
-#### 3.Use daos to access data,Enjoy it.
+#### 3.Use daos to access data.
 ```Java
         new MyDBHelper(this, DB_NAME, null, DB_VERSION);
+        Random random = new Random(System.currentTimeMillis());
         User user = new User();
-        user.setAge(25);
-        user.setName("Irwin");
+        user.setAge(random.nextInt(80));
+        user.setName("Irwin[" + random.nextInt(100) + "]");
         UserDao.getInstance().insert(user);
 
         Employee employee = new Employee();
-        employee.setAge(28);
-        employee.setName("Jack");
-        employee.setSalary(15000);
-        employee.setPost(1);
-        employee.setCode("20160820");
+        employee.setAge(random.nextInt(60));
+        employee.setName("Jack[" + random.nextInt(100) + "]");
+        employee.setSalary(random.nextInt(50000));
+        employee.setPost(random.nextInt(8));
+        employee.setCode(String.valueOf(random.nextInt()));
+        employee.setScore(random.nextInt(100));
         EmployeeDao.getInstance().insert(employee);
 
         //We provided many convenient methods for using in common database development. See {@link com.irwin.database.AbstractDao} for more information.
@@ -99,6 +104,17 @@ public class MyDBHelper extends BaseDBHelper {
 
         List<Employee> list = EmployeeDao.getInstance().queryAll();
 ```
+
+</br>
+
+#### 4.We use 'DefaultUpgrader' to upgrade the database.You can choose 'StrictUpgrader' which will treat columns changes strictly, 
+or implement your own upgrader and tell your Database helper:
+
+```Java
+ new MyDBHelper(this, DB_NAME, null, DB_VERSION).setUpgrader(YOUR CHOOSE/IMPLEMENTATION);
+```
+
+#### 5.Implement your dao as ObservableDao or Decorate a dao with ObservableDaoDecor so you can subscribe events of table change by 'registerObserver(IDBObserver observer)', Enjoy it.
 
 </br>
 
