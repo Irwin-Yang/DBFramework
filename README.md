@@ -107,14 +107,16 @@ public class MyDBHelper extends BaseDBHelper {
 
 </br>
 
-#### 4.We use 'DefaultUpgrader' to upgrade the database.You can choose 'StrictUpgrader' which will treat columns changes strictly, 
+#### 4.We use `DefaultUpgrader` to upgrade the database as default. You can choose `StrictUpgrader` which will treat columns changes strictly, 
 or implement your own upgrader and tell your Database helper:
 
 ```Java
  new MyDBHelper(this, DB_NAME, null, DB_VERSION).setUpgrader(YOUR CHOOSE/IMPLEMENTATION);
 ```
 
-#### 5.Implement your dao as ObservableDao or Decorate a dao with ObservableDaoDecor so you can subscribe events of table change by 'registerObserver(IDBObserver observer)', Enjoy it.
+</br>
+
+#### 5.Implement your dao as ObservableDao or Decorate a dao with ObservableDaoDecor so you can subscribe events of table change by `registerObserver(IDBObserver observer)`, Enjoy it.
 
 </br>
 
