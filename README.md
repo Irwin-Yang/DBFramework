@@ -126,6 +126,6 @@ public class MyDBHelper extends BaseDBHelper {
 Any advice will be appreciated:D
 
 </br>
-More information about `DBFramework` :http://www.cnblogs.com/oxgen/p/7161986.html
+More information about DBFramework:http://www.cnblogs.com/oxgen/p/7161986.html
 </br>
 Email:zhpngyang52@gmail.com
