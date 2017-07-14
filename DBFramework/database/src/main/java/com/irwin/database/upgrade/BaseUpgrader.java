@@ -111,6 +111,10 @@ public abstract class BaseUpgrader {
         return ret;
     }
 
+    /**
+     * Get old tables.
+     * @return A map contains old tables which takes table name as key.
+     */
     public Map<String, Table> getOldTables() {
         final String table = "sqlite_master";
         final String[] columns = {"name", "sql"};

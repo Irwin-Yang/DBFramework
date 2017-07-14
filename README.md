@@ -127,4 +127,6 @@ or implement your own upgrader and tell your Database helper:
 Any advice will be appreciated:D
 
 </br>
+More information about `DBFramework`:http://www.cnblogs.com/oxgen/p/7161986.html
+</br>
 Email:zhpngyang52@gmail.com
