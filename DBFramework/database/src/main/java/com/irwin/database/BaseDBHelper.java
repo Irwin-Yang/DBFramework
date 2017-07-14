@@ -5,7 +5,13 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.irwin.database.upgrade.BaseUpgrader;
+import com.irwin.database.upgrade.DefaultUpgrader;
+import com.irwin.database.upgrade.StrictUpgrader;
+import com.irwin.database.upgrade.Table;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,7 +21,7 @@ public abstract class BaseDBHelper extends SQLiteOpenHelper {
 
     public abstract List<AbstractDao> getTables();
 
-    private AbstractUpgrader mUpgrader;
+    private BaseUpgrader mUpgrader;
 
     private Context mContext;
 
@@ -45,11 +51,11 @@ public abstract class BaseDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public AbstractUpgrader getUpgrader() {
+    public BaseUpgrader getUpgrader() {
         return mUpgrader;
     }
 
-    public void setUpgrader(AbstractUpgrader upgrader) {
+    public void setUpgrader(BaseUpgrader upgrader) {
         this.mUpgrader = upgrader;
     }
 
@@ -70,10 +76,28 @@ public abstract class BaseDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (mUpgrader == null) {
-            mUpgrader = new DefaultUpgrader();
+        BaseUpgrader upgrader = getUpgrader();
+        if (upgrader == null) {
+            upgrader = new DefaultUpgrader();
         }
-        mUpgrader.upgrade(db, getTables(), oldVersion, newVersion);
+        upgrader.setDatabase(db);
+        List<AbstractDao> list = getTables();
+        if (list == null) {
+            return;
+        }
+        int size = list.size();
+        AbstractDao dao;
+        ArrayList<Table> tableList = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            dao = list.get(i);
+            tableList.add(new Table(dao.getTableName(), dao.getCreateSql()));
+        }
+        try {
+            //Catch unexpected exceptions.
+            upgrader.upgrade(oldVersion, newVersion, tableList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

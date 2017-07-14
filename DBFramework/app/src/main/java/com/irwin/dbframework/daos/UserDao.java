@@ -26,7 +26,7 @@ public class UserDao<USER extends User> extends BaseDao<USER, Long> implements U
     @Override
     public int addProperties(List<Property> list, int offset) {
         //Add columns here.
-        list.add(new Property(ID, Property.TYPE_INTEGER).setPrimaryKey(true));
+        list.add(new Property(ID, Property.TYPE_INTEGER).setPrimaryKey(true).setAutoIncrement(true));
         list.add(new Property(NAME, Property.TYPE_TEXT));
         list.add(new Property(AGE, Property.TYPE_INTEGER));
         return 0;
@@ -35,7 +35,7 @@ public class UserDao<USER extends User> extends BaseDao<USER, Long> implements U
     @Override
     public USER createEntity() {
         //Create entity instance.
-        return (USER)new User();
+        return (USER) new User();
     }
 
     @Override

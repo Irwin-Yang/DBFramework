@@ -13,6 +13,8 @@ public class Employee extends User {
 
     private String code;
 
+    private int score;
+
     public int getSalary() {
         return salary;
     }
@@ -37,6 +39,14 @@ public class Employee extends User {
         this.code = code;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public String toString() {
         return "Employee{" +
                 "id=" + getId() +
@@ -45,6 +55,7 @@ public class Employee extends User {
                 ",salary=" + salary +
                 ", post=" + post +
                 ", code='" + code + '\'' +
+                ", score='" + score + '\'' +
                 '}';
     }
 
@@ -54,5 +65,7 @@ public class Employee extends User {
         String POST = "post";
 
         String CODE = "code";
+
+        String SCORE = "score";
     }
 }

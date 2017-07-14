@@ -30,6 +30,7 @@ public class EmployeeDao extends UserDao<Employee> implements Employee.Columns {
         list.add(new Property(SALARY, Property.TYPE_INTEGER));
         list.add(new Property(POST, Property.TYPE_INTEGER));
         list.add(new Property(CODE, Property.TYPE_TEXT));
+        list.add(new Property(SCORE, Property.TYPE_INTEGER));
         return 0;
     }
 
@@ -44,6 +45,7 @@ public class EmployeeDao extends UserDao<Employee> implements Employee.Columns {
         employee.setSalary(cursor.getInt(offset++));
         employee.setPost(cursor.getInt(offset++));
         employee.setCode(cursor.getString(offset++));
+        employee.setScore(cursor.getInt(offset++));
         return offset;
     }
 
@@ -58,6 +60,7 @@ public class EmployeeDao extends UserDao<Employee> implements Employee.Columns {
         values.put(SALARY, employee.getSalary());
         values.put(POST, employee.getPost());
         values.put(CODE, employee.getCode());
+        values.put(SCORE, employee.getScore());
         return values;
     }
 }
