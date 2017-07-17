@@ -110,7 +110,7 @@ public class MyDBHelper extends BaseDBHelper {
 #### 4.We use `DefaultUpgrader` to upgrade the database as default. You can choose `StrictUpgrader` which will treat columns changes strictly, or implement your own upgrader and tell your Database helper:
 
 ```Java
- new MyDBHelper(this, DB_NAME, null, DB_VERSION).setUpgrader(YOUR CHOOSE/IMPLEMENTATION);
+ new MyDBHelper(this, DB_NAME, null, DB_VERSION).setUpgrader(YOUR CHOOSEN/IMPLEMENTATION);
 ```
 
 </br>
