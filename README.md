@@ -1,6 +1,6 @@
 # DBFramework
 Lite sqlite Database framework on Android which can handle table hierarchies elegantly and efficiently. It support upgrade database  seamlessly and subscribe events
-of table chagne too.
+of table change too.
 </br>
 
 # Features
